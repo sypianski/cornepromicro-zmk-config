@@ -92,7 +92,7 @@
             bindings = <
    &none   &kp HOME  &kp PG_UP  &kp PG_DN  &kp END   &none       &kp LBKT   &kp N7  &kp N8  &kp N9  &kp RBKT   &trans
    &trans  &kp UP    &kp LEFT   &kp RIGHT  &kp DOWN  &none       &kp LPAR   &kp N4  &kp N5  &kp N6  &kp RPAR   &trans
-   &trans  &none     &kp LC(LEFT) &kp LC(RIGHT) &none &none      &kp LBRC   &kp N1  &kp N2  &kp N3  &kp RBRC   &trans
+   &trans  &kp LC(BSPC)  &kp LC(LEFT)  &kp LC(RIGHT)  &kp LC(DEL)  &none      &kp LBRC   &kp N1  &kp N2  &kp N3  &kp RBRC   &trans
                               &trans     &trans    &none       &trans     &trans  &kp N0
             >;
         };
