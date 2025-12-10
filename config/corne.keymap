@@ -19,6 +19,59 @@
         };
     };
 
+    // Caps word configuration - continues on underscore, minus, backspace, delete
+    &caps_word {
+        continue-list = <UNDERSCORE MINUS BACKSPACE DELETE>;
+    };
+
+    combos {
+        compatible = "zmk,combos";
+
+        // Brackets - home row adjacent keys
+        combo_lbrc {
+            timeout-ms = <50>;
+            key-positions = <13 14>;  // A + R
+            bindings = <&kp LBRC>;
+        };
+        combo_lbkt {
+            timeout-ms = <50>;
+            key-positions = <14 15>;  // R + S
+            bindings = <&kp LBKT>;
+        };
+        combo_lpar {
+            timeout-ms = <50>;
+            key-positions = <15 16>;  // S + T
+            bindings = <&kp LPAR>;
+        };
+        combo_rpar {
+            timeout-ms = <50>;
+            key-positions = <19 20>;  // N + E
+            bindings = <&kp RPAR>;
+        };
+        combo_rbkt {
+            timeout-ms = <50>;
+            key-positions = <20 21>;  // E + I
+            bindings = <&kp RBKT>;
+        };
+        combo_rbrc {
+            timeout-ms = <50>;
+            key-positions = <21 22>;  // I + O
+            bindings = <&kp RBRC>;
+        };
+
+        // Utility combos
+        combo_bootloader {
+            timeout-ms = <50>;
+            key-positions = <5 6>;    // G + J (inner index keys)
+            bindings = <&bootloader>;
+        };
+        combo_caps_word {
+            timeout-ms = <50>;
+            key-positions = <16 19>;  // T + N (index fingers across split)
+            bindings = <&caps_word>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
