@@ -8,11 +8,11 @@ Ca esas mea personala keymap por la Corne klavaro, konvertita de Vial a ZMK form
 
 | Strato | Nomo | Deskripto |
 |--------|------|-----------|
-| 0 | Base | Colemak literi kun modifikatori |
+| 0 | Base | Colemak literi kun homerow-modi |
 | 1 | Num | Nombri 0-9, navigado (sagii), parentezi |
 | 2 | Sym | Simboli (=, -, !, @, #, ', \, `) |
 | 3 | L3 | Vakua (por futura uzo) |
-| 4 | Fn | Funciono-klavi F1-F18 |
+| 4 | Fn | Funciono-klavi F1-F18, Bluetooth-komandi |
 | 5-9 | — | Rezervita por futura uzo |
 
 ## Acesar Strati
@@ -20,6 +20,17 @@ Ca esas mea personala keymap por la Corne klavaro, konvertita de Vial a ZMK form
 - **Tenar TAB** → Strato 1 (Nombri)
 - **Tenar ENTER** → Strato 2 (Simboli)
 - **Tenar BACKSPACE** → Strato 4 (Funciono-klavi)
+
+## Homerow Modi
+
+Uzo de tap-preferred hold-tap (200ms):
+
+| Sinistra | Dextra |
+|----------|--------|
+| A = GUI | N = SHIFT |
+| R = ALT | E = CTRL |
+| S = CTRL | I = ALT |
+| T = SHIFT | O = GUI |
 
 ## Mod-Tap Klavi
 
@@ -29,6 +40,36 @@ Kelka klavi havas duopla funciono:
 |-------|---------|--------|
 | Sinistra X | X | LSHIFT |
 | Dextra ESC | ESC | RGUI |
+
+## Kombi
+
+Presar du klavi samtempe:
+
+| Klavi | Rezulto |
+|-------|---------|
+| A + R | { |
+| R + S | [ |
+| S + T | ( |
+| N + E | ) |
+| E + I | ] |
+| I + O | } |
+| G + J | Bootloader |
+| T + N | Caps Word |
+
+## Caps Word
+
+Caps Word aktivigas per T+N kombo. Olu duros dum tu tajpas literi, e duras kun:
+- Underscore (_)
+- Minus (-)
+- Backspace
+- Delete
+
+## Bluetooth (Strato 4)
+
+- BT_CLR, BT_CLR_ALL - Klarigar konexi
+- BT_SEL 0-4 - Selektar profilo
+- BT_PRV, BT_NXT - Antea/nexta profilo
+- BT_DISC 0-2 - Diskonetar profilo
 
 ## Instalado
 
