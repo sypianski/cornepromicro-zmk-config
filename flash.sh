@@ -2,8 +2,6 @@
 # Flash ZMK firmware to Corne keyboard halves
 # Usage: ./flash.sh [commit_sha]
 
-set -e
-
 REPO="sypianski/cornepromicro-zmk-config"
 ARTIFACT_NAME="firmware"
 TEMP_DIR="/tmp/zmk-firmware"
@@ -85,8 +83,8 @@ flash_half() {
     local count=0
 
     while [ -z "$mount_point" ] && [ $count -lt $timeout ]; do
-        # Check common mount points for nice!nano bootloader
-        for path in /media/$USER/* /run/media/$USER/* /mnt/*; do
+        # Check common mount points for nice!nano bootloader (Linux + macOS)
+        for path in /Volumes/* /media/$USER/* /run/media/$USER/* /mnt/*; do
             if [ -d "$path" ]; then
                 # nice!nano shows as NICENANO or has INFO_UF2.TXT
                 if [[ "$(basename "$path")" == *NICENANO* ]] || [ -f "$path/INFO_UF2.TXT" ]; then
@@ -112,10 +110,18 @@ flash_half() {
     log "Found bootloader at: $mount_point"
     log "Flashing $side half..."
 
-    cp "$uf2_file" "$mount_point/"
+    # Use -X on macOS to skip extended attributes (avoids FAT32 warnings)
+    if cp -X "$uf2_file" "$mount_point/" 2>/dev/null || cp "$uf2_file" "$mount_point/" 2>/dev/null; then
+        log "File copied, waiting for device to reboot..."
+    else
+        warn "Copy had warnings, but may have succeeded"
+    fi
 
     # Wait for device to disconnect (indicates successful flash)
-    sleep 2
+    sleep 3
+    while [ -d "$mount_point" ]; do
+        sleep 1
+    done
     log "$side half flashed successfully!"
 }
 
