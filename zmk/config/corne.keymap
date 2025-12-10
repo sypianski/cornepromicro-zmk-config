@@ -1,0 +1,140 @@
+/*
+ * Corne Keymap - Konvertita de Vial
+ * Layout: Colemak
+ */
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+
+/ {
+    behaviors {
+        hm: homerow_mods {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <0>;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&kp>;
+        };
+    };
+
+    // Caps word configuration - continues on underscore, minus, backspace, delete
+    &caps_word {
+        continue-list = <UNDERSCORE MINUS BACKSPACE DELETE>;
+    };
+
+    combos {
+        compatible = "zmk,combos";
+
+        // Brackets - home row adjacent keys
+        combo_lbrc {
+            timeout-ms = <50>;
+            key-positions = <13 14>;  // A + R
+            bindings = <&kp LBRC>;
+        };
+        combo_lbkt {
+            timeout-ms = <50>;
+            key-positions = <14 15>;  // R + S
+            bindings = <&kp LBKT>;
+        };
+        combo_lpar {
+            timeout-ms = <50>;
+            key-positions = <15 16>;  // S + T
+            bindings = <&kp LPAR>;
+        };
+        combo_rpar {
+            timeout-ms = <50>;
+            key-positions = <19 20>;  // N + E
+            bindings = <&kp RPAR>;
+        };
+        combo_rbkt {
+            timeout-ms = <50>;
+            key-positions = <20 21>;  // E + I
+            bindings = <&kp RBKT>;
+        };
+        combo_rbrc {
+            timeout-ms = <50>;
+            key-positions = <21 22>;  // I + O
+            bindings = <&kp RBRC>;
+        };
+
+        // Utility combos
+        combo_bootloader {
+            timeout-ms = <50>;
+            key-positions = <5 6>;    // G + J (inner index keys)
+            bindings = <&bootloader>;
+        };
+        combo_caps_word {
+            timeout-ms = <50>;
+            key-positions = <16 19>;  // T + N (index fingers across split)
+            bindings = <&caps_word>;
+        };
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+
+        // Layer 0: Base (Colemak)
+        base_layer {
+            display-name = "Base";
+            bindings = <
+   &kp LCTRL  &kp Q  &kp W  &kp F  &kp P  &kp G      &kp J  &kp L  &kp U      &kp Y    &kp SEMI  &kp C_VOL_UP
+   &kp LGUI   &hm LGUI A  &hm LALT R  &hm LCTRL S  &hm LSHFT T  &kp D      &kp H  &hm RSHFT N  &hm RCTRL E  &hm RALT I  &hm RGUI O  &kp C_VOL_DN
+   &mt LSHFT X &kp Z &kp X  &kp C  &kp V  &kp B      &kp K  &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp RSHFT
+                     &kp LALT  &kp SPACE  &lt 1 TAB  &lt 2 RET  &lt 4 BSPC  &mt RGUI ESC
+            >;
+        };
+
+        // Layer 1: Numbers + Navigation
+        num_layer {
+            display-name = "Num";
+            bindings = <
+   &none   &kp HOME  &kp PG_UP  &kp PG_DN  &kp END   &none       &kp LBKT   &kp N7  &kp N8  &kp N9  &kp RBKT   &trans
+   &trans  &kp UP    &kp LEFT   &kp RIGHT  &kp DOWN  &none       &kp LPAR   &kp N4  &kp N5  &kp N6  &kp RPAR   &trans
+   &trans  &none     &kp LC(LEFT) &kp LC(RIGHT) &none &none      &kp LBRC   &kp N1  &kp N2  &kp N3  &kp RBRC   &trans
+                              &trans     &trans    &none       &trans     &trans  &kp N0
+            >;
+        };
+
+        // Layer 2: Symbols
+        sym_layer {
+            display-name = "Sym";
+            bindings = <
+   &trans  &kp EQUAL  &kp PLUS  &kp STAR  &kp AMPS  &kp PIPE     &kp LBRC  &kp LBKT  &kp LPAR  &kp RPAR  &kp RBKT  &kp RBRC
+   &trans  &kp MINUS  &kp EXCL  &kp AT    &kp HASH  &kp SQT      &kp DQT   &kp UNDER &kp COLON &kp SEMI  &kp QMARK &trans
+   &kp BSLH  &kp CARET  &kp BSLH  &kp GRAVE &kp TILDE &kp PRCNT    &kp DLLR  &kp LT    &kp GT    &kp FSLH  &trans    &trans
+                                &trans    &trans    &trans       &trans    &trans    &trans
+            >
+        };
+
+        // Layer 3: (Vakua en Vial)
+        layer_3 {
+            display-name = "L3";
+            bindings = <
+   &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
+   &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
+   &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
+                           &trans  &trans  &trans      &trans  &trans  &trans
+            >;
+        };
+
+        // Layer 4: Function Keys + Bluetooth
+        fn_layer {
+            display-name = "Fn";
+            bindings = <
+   &kp F15  &kp F14  &kp F15  &kp F16  &kp F17  &kp F18      &bt BT_CLR    &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
+   &kp F7   &kp F8   &kp F9   &kp F10  &kp F11  &kp F12      &bt BT_CLR_ALL &bt BT_PRV   &bt BT_NXT    &trans        &trans        &trans
+   &kp F1   &kp F2   &kp F3   &kp F4   &kp F5   &kp F6       &trans        &bt BT_DISC 0 &bt BT_DISC 1 &bt BT_DISC 2 &trans        &trans
+                              &trans   &trans   &trans       &trans        &trans        &trans
+            >;
+        };
+
+        // Rezervita strati por futura uzo (5-9)
+        extra5 { status = "reserved"; };
+        extra6 { status = "reserved"; };
+        extra7 { status = "reserved"; };
+        extra8 { status = "reserved"; };
+        extra9 { status = "reserved"; };
+    };
+};
