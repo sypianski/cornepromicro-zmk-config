@@ -84,13 +84,10 @@ flash_half() {
 
     while [ -z "$mount_point" ] && [ $count -lt $timeout ]; do
         # Check common mount points for nice!nano bootloader (Linux + macOS)
-        for path in /Volumes/* /media/$USER/* /run/media/$USER/* /mnt/*; do
-            if [ -d "$path" ]; then
-                # nice!nano shows as NICENANO or has INFO_UF2.TXT
-                if [[ "$(basename "$path")" == *NICENANO* ]] || [ -f "$path/INFO_UF2.TXT" ]; then
-                    mount_point="$path"
-                    break
-                fi
+        for path in /Volumes/NICENANO /Volumes/NICENANO* /media/$USER/NICENANO* /run/media/$USER/NICENANO* /mnt/NICENANO*; do
+            if [ -d "$path" ] && [ -f "$path/INFO_UF2.TXT" ]; then
+                mount_point="$path"
+                break
             fi
         done
 
@@ -129,6 +126,11 @@ flash_half() {
 
 # Flash both halves
 flash_half "$LEFT_UF2" "LEFT"
+
+echo ""
+log "Left half done. Waiting 5 seconds before looking for right half..."
+sleep 5
+
 flash_half "$RIGHT_UF2" "RIGHT"
 
 echo ""
