@@ -118,9 +118,11 @@ flash_half() {
     fi
 
     # Wait for device to disconnect (indicates successful flash)
-    sleep 3
-    while [ -d "$mount_point" ]; do
+    sleep 2
+    local wait_count=0
+    while [ -d "$mount_point" ] && [ $wait_count -lt 10 ]; do
         sleep 1
+        ((wait_count++))
     done
     log "$side half flashed successfully!"
 }
