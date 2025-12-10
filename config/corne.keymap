@@ -19,11 +19,6 @@
         };
     };
 
-    // Caps word configuration - continues on underscore, minus, backspace, delete
-    &caps_word {
-        continue-list = <UNDERSCORE MINUS BACKSPACE DELETE>;
-    };
-
     combos {
         compatible = "zmk,combos";
 
@@ -137,4 +132,9 @@
         extra8 { status = "reserved"; };
         extra9 { status = "reserved"; };
     };
+};
+
+// Caps word configuration - continues on underscore, minus, backspace, delete
+&caps_word {
+    continue-list = <UNDERSCORE MINUS BACKSPACE DELETE>;
 };
