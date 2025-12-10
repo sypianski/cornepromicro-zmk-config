@@ -100,7 +100,7 @@
    &trans  &kp MINUS  &kp EXCL  &kp AT    &kp HASH  &kp SQT      &kp DQT   &kp UNDER &kp COLON &kp SEMI  &kp QMARK &trans
    &kp BSLH  &kp CARET  &kp BSLH  &kp GRAVE &kp TILDE &kp PRCNT    &kp DLLR  &kp LT    &kp GT    &kp FSLH  &trans    &trans
                                 &trans    &trans    &trans       &trans    &trans    &trans
-            >
+            >;
         };
 
         // Layer 3: (Vakua en Vial)
