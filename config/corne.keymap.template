@@ -1,7 +1,7 @@
 /*
  * Corne Keymap - Konvertita de Vial
  * Layout: Colemak
- * Target: android (Ctrl is primary, GUI is secondary)
+ * Target: {{TARGET}} ({{TARGET_DESC}})
  */
 
 #include <behaviors.dtsi>
@@ -94,25 +94,25 @@
         compatible = "zmk,keymap";
 
         // Layer 0: Base (Colemak)
-        // Homerow mods: A=CTRL, R=ALT, S=GUI, T=SHIFT (mirrored on right)
+        // Homerow mods: A={{PRIMARY}}, R=ALT, S={{SECONDARY}}, T=SHIFT (mirrored on right)
         base_layer {
             display-name = "Base";
             bindings = <
-   &kp LGUI  &kp Q  &kp W  &kp F  &kp P  &kp G      &kp J  &kp L  &kp U      &kp Y    &colon_semi  &none
-   &kp LCTRL   &hm LCTRL A  &hm LALT R  &hm LGUI S  &hm LSHFT T  &kp D      &kp H  &hm RSHFT N  &hm RGUI E  &hm RALT I  &hm RCTRL O  &kp ESC
+   &kp {{CORNER_L1}}  &kp Q  &kp W  &kp F  &kp P  &kp G      &kp J  &kp L  &kp U      &kp Y    &colon_semi  &none
+   &kp {{CORNER_L2}}   &hm {{L_PRIMARY}} A  &hm LALT R  &hm {{L_SECONDARY}} S  &hm LSHFT T  &kp D      &kp H  &hm RSHFT N  &hm {{R_SECONDARY}} E  &hm RALT I  &hm {{R_PRIMARY}} O  &kp ESC
    &mt LSHFT X &kp Z &kp X  &kp C  &kp V  &kp B      &kp K  &kp M  &kp COMMA  &kp DOT  &qmark_slash  &kp RSHFT
                      &kp LALT  &lt 3 SPACE  &lt 1 TAB  &lt 2 RET  &lt 4 BSPC  &kp RALT
             >;
         };
 
         // Layer 1: Numbers + Navigation
-        // Navigation uses LC for word-jumping (Cmd on Mac, Ctrl on Android/Linux)
+        // Navigation uses {{NAV_MOD}} for word-jumping (Cmd on Mac, Ctrl on Android/Linux)
         num_layer {
             display-name = "Num";
             bindings = <
    &none   &kp PG_UP     &kp HOME   &kp PG_DN  &kp END        &none       &kp LBKT   &kp N7  &kp N8  &kp N9  &kp RBKT   &trans
    &trans  &kp UP        &kp LEFT   &kp RIGHT  &kp DOWN       &none       &kp LPAR   &kp N4  &kp N5  &kp N6  &kp RPAR   &trans
-   &trans  &kp LC(LEFT)  &kp LC(DOWN) &kp LC(UP) &kp LC(RIGHT) &none      &kp LBRC   &kp N1  &kp N2  &kp N3  &kp RBRC   &trans
+   &trans  &kp {{NAV_MOD}}(LEFT)  &kp {{NAV_MOD}}(DOWN) &kp {{NAV_MOD}}(UP) &kp {{NAV_MOD}}(RIGHT) &none      &kp LBRC   &kp N1  &kp N2  &kp N3  &kp RBRC   &trans
                                     &trans     &trans         &none       &trans     &trans  &kp N0
             >;
         };
