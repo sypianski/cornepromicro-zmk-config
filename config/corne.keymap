@@ -82,6 +82,11 @@
             key-positions = <16 19>;  // T + N (index fingers across split)
             bindings = <&caps_word>;
         };
+        combo_delete {
+            timeout-ms = <50>;
+            key-positions = <1 2>;    // Q + W
+            bindings = <&kp DEL>;
+        };
     };
 
     keymap {
@@ -94,7 +99,7 @@
    &kp LCTRL  &kp Q  &kp W  &kp F  &kp P  &kp G      &kp J  &kp L  &kp U      &kp Y    &colon_semi  &none
    &kp LGUI   &hm LGUI A  &hm LALT R  &hm LCTRL S  &hm LSHFT T  &kp D      &kp H  &hm RSHFT N  &hm RCTRL E  &hm RALT I  &hm RGUI O  &kp ESC
    &mt LSHFT X &kp Z &kp X  &kp C  &kp V  &kp B      &kp K  &kp M  &kp COMMA  &kp DOT  &qmark_slash  &kp RSHFT
-                     &kp LALT  &kp SPACE  &lt 1 TAB  &lt 2 RET  &lt 4 BSPC  &kp RALT
+                     &kp LALT  &lt 3 SPACE  &lt 1 TAB  &lt 2 RET  &lt 4 BSPC  &kp RALT
             >;
         };
 
@@ -103,7 +108,7 @@
             display-name = "Num";
             bindings = <
    &none   &kp PG_UP     &kp HOME   &kp PG_DN  &kp END        &none       &kp LBKT   &kp N7  &kp N8  &kp N9  &kp RBKT   &trans
-   &trans  &kp LEFT      &kp DOWN   &kp UP     &kp RIGHT      &none       &kp LPAR   &kp N4  &kp N5  &kp N6  &kp RPAR   &trans
+   &trans  &kp UP        &kp LEFT   &kp RIGHT  &kp DOWN       &none       &kp LPAR   &kp N4  &kp N5  &kp N6  &kp RPAR   &trans
    &trans  &kp LA(LEFT)  &kp LA(DOWN) &kp LA(UP) &kp LA(RIGHT) &none      &kp LBRC   &kp N1  &kp N2  &kp N3  &kp RBRC   &trans
                                     &trans     &trans         &none       &trans     &trans  &kp N0
             >;
@@ -120,25 +125,25 @@
             >;
         };
 
-        // Layer 3: (Vakua en Vial)
-        layer_3 {
-            display-name = "L3";
+        // Layer 3: Media + Bluetooth
+        media_layer {
+            display-name = "Media";
             bindings = <
-   &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
-   &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
-   &trans  &trans  &trans  &trans  &trans  &trans      &trans  &trans  &trans  &trans  &trans  &trans
-                           &trans  &trans  &trans      &trans  &trans  &trans
+   &trans  &trans      &trans        &trans        &trans      &trans      &bt BT_CLR     &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
+   &trans  &kp C_PREV  &kp C_VOL_DN  &kp C_VOL_UP  &kp C_NEXT  &trans      &bt BT_CLR_ALL &bt BT_PRV    &bt BT_NXT    &trans        &trans        &trans
+   &trans  &trans      &kp C_BRI_DN  &kp C_BRI_UP  &kp C_MUTE  &kp C_PP    &trans         &bt BT_DISC 0 &bt BT_DISC 1 &bt BT_DISC 2 &trans        &trans
+                                     &trans        &trans      &trans      &trans         &trans        &trans
             >;
         };
 
-        // Layer 4: Function Keys + Bluetooth
+        // Layer 4: Function Keys (F1-F24, bottom-left to top-right, cols 2-11)
         fn_layer {
             display-name = "Fn";
             bindings = <
-   &kp F15  &kp F14  &kp F15  &kp F16  &kp F17  &kp F18      &bt BT_CLR    &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
-   &kp F7   &kp F8   &kp F9   &kp F10  &kp F11  &kp F12      &bt BT_CLR_ALL &bt BT_PRV   &bt BT_NXT    &trans        &trans        &trans
-   &kp F1   &kp F2   &kp F3   &kp F4   &kp F5   &kp F6       &trans        &bt BT_DISC 0 &bt BT_DISC 1 &bt BT_DISC 2 &trans        &trans
-                              &trans   &trans   &trans       &trans        &trans        &trans
+   &trans   &kp F21  &kp F22  &kp F23  &kp F24  &trans       &trans   &trans   &trans   &trans   &trans   &trans
+   &trans   &kp F11  &kp F12  &kp F13  &kp F14  &kp F15      &kp F16  &kp F17  &kp F18  &kp F19  &kp F20  &trans
+   &trans   &kp F1   &kp F2   &kp F3   &kp F4   &kp F5       &kp F6   &kp F7   &kp F8   &kp F9   &kp F10  &trans
+                              &trans   &trans   &trans       &trans   &trans   &trans
             >;
         };
 
