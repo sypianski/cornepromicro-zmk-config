@@ -1,7 +1,8 @@
 #!/bin/bash
 # Flash ZMK firmware to Corne keyboard halves
-# Usage: ./flash.sh [commit_sha]
+# Usage: ./flash.sh
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO="sypianski/cornepromicro-zmk-config"
 ARTIFACT_NAME="firmware"
 TEMP_DIR="/tmp/zmk-firmware"
@@ -10,6 +11,8 @@ TEMP_DIR="/tmp/zmk-firmware"
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+BOLD='\033[1m'
 NC='\033[0m'
 
 log() { echo -e "${GREEN}[*]${NC} $1"; }
@@ -21,14 +24,66 @@ if ! gh auth status &>/dev/null; then
     error "Not authenticated. Run: gh auth login"
 fi
 
-# Get the workflow run (from commit or latest)
-if [ -n "$1" ]; then
-    log "Finding workflow run for commit $1..."
-    RUN_ID=$(gh run list --repo "$REPO" --commit "$1" --json databaseId --jq '.[0].databaseId')
-else
-    log "Finding latest successful workflow run..."
-    RUN_ID=$(gh run list --repo "$REPO" --status success --json databaseId --jq '.[0].databaseId')
+# Platform selection menu
+echo ""
+echo -e "${BOLD}Select target platform:${NC}"
+echo -e "  ${BLUE}1)${NC} Android  (Ctrl primary)"
+echo -e "  ${BLUE}2)${NC} macOS    (Cmd primary)"
+echo ""
+read -p "Choice [1/2]: " choice
+
+case "$choice" in
+    1|a|android)
+        PLATFORM="android"
+        KEYMAP_FILE="$SCRIPT_DIR/config/corne.android.keymap"
+        ;;
+    2|m|macos)
+        PLATFORM="macos"
+        KEYMAP_FILE="$SCRIPT_DIR/config/corne.macos.keymap"
+        ;;
+    *)
+        error "Invalid choice"
+        ;;
+esac
+
+log "Selected platform: $PLATFORM"
+
+# Check if keymap needs updating
+if ! diff -q "$KEYMAP_FILE" "$SCRIPT_DIR/config/corne.keymap" &>/dev/null; then
+    log "Updating keymap to $PLATFORM version..."
+    cp "$KEYMAP_FILE" "$SCRIPT_DIR/config/corne.keymap"
+
+    # Commit and push
+    cd "$SCRIPT_DIR"
+    git add config/corne.keymap
+    git commit -m "Switch to $PLATFORM keymap"
+    git push
+
+    log "Pushed to GitHub. Waiting for build..."
+    sleep 5
+
+    # Wait for the new run to start
+    log "Waiting for workflow to complete..."
+    while true; do
+        STATUS=$(gh run list --repo "$REPO" --limit 1 --json status --jq '.[0].status')
+        if [ "$STATUS" = "completed" ]; then
+            break
+        fi
+        printf "\r${YELLOW}[!]${NC} Build status: $STATUS "
+        sleep 10
+    done
+    echo ""
+
+    RESULT=$(gh run list --repo "$REPO" --limit 1 --json conclusion --jq '.[0].conclusion')
+    if [ "$RESULT" != "success" ]; then
+        error "Build failed: $RESULT"
+    fi
+    log "Build completed successfully!"
 fi
+
+# Get the latest successful workflow run
+log "Finding latest successful workflow run..."
+RUN_ID=$(gh run list --repo "$REPO" --status success --json databaseId --jq '.[0].databaseId')
 
 if [ -z "$RUN_ID" ]; then
     error "No workflow run found"
