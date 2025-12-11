@@ -86,10 +86,10 @@
         num_layer {
             display-name = "Num";
             bindings = <
-   &none   &none         &none     &none      &none          &none       &kp LBKT   &kp N7  &kp N8  &kp N9  &kp RBKT   &trans
-   &trans  &kp LA(LEFT)  &kp DOWN  &kp UP     &kp LA(RIGHT)  &none       &kp LPAR   &kp N4  &kp N5  &kp N6  &kp RPAR   &trans
-   &trans  &kp HOME      &kp PG_DN &kp PG_UP  &kp END        &none       &kp LBRC   &kp N1  &kp N2  &kp N3  &kp RBRC   &trans
-                                   &kp LEFT   &kp RIGHT      &none       &trans     &trans  &kp N0
+   &none   &kp HOME      &kp PG_UP  &kp PG_DN  &kp END        &none       &kp LBKT   &kp N7  &kp N8  &kp N9  &kp RBKT   &trans
+   &trans  &kp LEFT      &kp DOWN   &kp UP     &kp RIGHT      &none       &kp LPAR   &kp N4  &kp N5  &kp N6  &kp RPAR   &trans
+   &trans  &kp LA(LEFT)  &kp LA(DOWN) &kp LA(UP) &kp LA(RIGHT) &none      &kp LBRC   &kp N1  &kp N2  &kp N3  &kp RBRC   &trans
+                                    &trans     &trans         &none       &trans     &trans  &kp N0
             >;
         };
 
