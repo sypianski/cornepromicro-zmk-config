@@ -139,13 +139,14 @@
         };
 
         // Layer 3: Diacritics (accessed via right ALT thumb)
+        // Sends LALT+key - works with macOS keylayout, Android needs setup
         diacritics_layer {
             display-name = "Dia";
             bindings = <
-   &trans  &kp CAPS    &trans        &trans        &trans      &trans      &bt BT_CLR     &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
-   &trans  &kp C_PREV  &kp C_VOL_DN  &kp C_VOL_UP  &kp C_NEXT  &trans      &bt BT_CLR_ALL &bt BT_PRV    &bt BT_NXT    &trans        &trans        &trans
-   &trans  &trans      &kp C_BRI_DN  &kp C_BRI_UP  &kp C_MUTE  &kp C_PP    &trans         &bt BT_DISC 0 &bt BT_DISC 1 &bt BT_DISC 2 &trans        &trans
-                                     &trans        &trans      &trans      &trans         &trans        &trans
+   &trans  &kp LA(Q)  &kp LA(W)  &kp LA(F)  &kp LA(P)  &kp LA(G)      &kp LA(J)  &kp LA(L)  &kp LA(U)      &kp LA(Y)    &kp LA(SEMI)  &trans
+   &trans  &kp LA(A)  &kp LA(R)  &kp LA(S)  &kp LA(T)  &kp LA(D)      &kp LA(H)  &kp LA(N)  &kp LA(E)      &kp LA(I)    &kp LA(O)     &trans
+   &trans  &kp LA(Z)  &kp LA(X)  &kp LA(C)  &kp LA(V)  &kp LA(B)      &kp LA(K)  &kp LA(M)  &kp LA(COMMA)  &kp LA(DOT)  &kp LA(FSLH)  &trans
+                                 &trans     &trans     &trans         &trans     &trans     &trans
             >;
         };
 
