@@ -143,9 +143,9 @@
         diacritics_layer {
             display-name = "Dia";
             bindings = <
-   &trans  &kp LA(Q)  &kp LA(W)  &kp LA(F)  &kp LA(P)  &kp LA(G)      &kp LA(J)  &kp LA(L)  &kp LA(U)      &kp LA(Y)    &kp LA(SEMI)  &trans
-   &trans  &kp LA(A)  &kp LA(R)  &kp LA(S)  &kp LA(T)  &kp LA(D)      &kp LA(H)  &kp LA(N)  &kp LA(E)      &kp LA(I)    &kp LA(O)     &trans
-   &trans  &kp LA(Z)  &kp LA(X)  &kp LA(C)  &kp LA(V)  &kp LA(B)      &kp LA(K)  &kp LA(M)  &kp LA(COMMA)  &kp LA(DOT)  &kp LA(FSLH)  &trans
+   &trans  &kp RA(Q)  &kp RA(W)  &kp RA(F)  &kp RA(P)  &kp RA(G)      &kp RA(J)  &kp RA(L)  &kp RA(U)      &kp RA(Y)    &kp RA(SEMI)  &trans
+   &trans  &kp RA(A)  &kp RA(R)  &kp RA(S)  &kp RA(T)  &kp RA(D)      &kp RA(H)  &kp RA(N)  &kp RA(E)      &kp RA(I)    &kp RA(O)     &trans
+   &trans  &kp RA(Z)  &kp RA(X)  &kp RA(C)  &kp RA(V)  &kp RA(B)      &kp RA(K)  &kp RA(M)  &kp RA(COMMA)  &kp RA(DOT)  &kp RA(FSLH)  &trans
                                  &trans     &trans     &trans         &trans     &trans     &trans
             >;
         };
@@ -171,7 +171,18 @@
                          &none  &none  &none      &none       &none         &none
             >;
         };
-        extra6 { status = "reserved"; };
+        // Layer 6: Dead Keys (combo TBD)
+        // Press dead key, release layer, then type base letter
+        deadkey_layer {
+            display-name = "Dead";
+            bindings = <
+   &none   &none         &none         &none        &none        &none         &none        &none         &none         &none         &none         &none
+   &none   &kp RA(N6)    &kp RA(N7)    &kp RA(N8)   &kp RA(N9)   &none         &none        &kp RA(N0)    &kp RA(MINUS) &kp RA(EQUAL) &none         &none
+   &none   &none         &none         &none        &none        &none         &none        &none         &none         &none         &none         &none
+                                       &none        &none        &none         &none        &none         &none
+            >;
+            // Home row: Macron(6) Circumflex(7) Umlaut(8) Caron(9) | Breve(0) Acute(-) Cedilla(=)
+        };
         extra7 { status = "reserved"; };
         extra8 { status = "reserved"; };
         extra9 { status = "reserved"; };
