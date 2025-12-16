@@ -11,16 +11,19 @@ Ca esas mea personala keymap por la Corne klavaro, konvertita de Vial a ZMK form
 | 0 | Base | Colemak literi kun homerow-modi |
 | 1 | Num | Nombri 0-9, navigado (sagii), parentezi |
 | 2 | Sym | Simboli (=, -, !, @, #, ', \, `) |
-| 3 | Media | Media-klavi, Bluetooth-komandi |
+| 3 | Dia | Diakritiki (RALT+klavo → ą ę ó etc.) |
 | 4 | Fn | Funciono-klavi F1-F24 |
-| 5-9 | — | Rezervita por futura uzo |
+| 5 | BT | Bluetooth-komandi (acesar per Z+X) |
+| 6 | Dead | Morta-klavi (makron, cirkumflekso, etc.) |
+| 7-9 | — | Rezervita por futura uzo |
 
 ## Acesar Strati
 
-- **Tenar SPACE** → Strato 3 (Media + Bluetooth)
+- **Tenar RALT (dextra polexo)** → Strato 3 (Diakritiki)
 - **Tenar TAB** → Strato 1 (Nombri)
 - **Tenar ENTER** → Strato 2 (Simboli)
 - **Tenar BACKSPACE** → Strato 4 (Funciono-klavi)
+- **Presar Z+X** → Strato 5 (Bluetooth)
 
 ## Baza Strato
 
@@ -28,7 +31,7 @@ Ca esas mea personala keymap por la Corne klavaro, konvertita de Vial a ZMK form
 LCTRL   Q       W       F       P       G       |  J       L       U       Y       :/;     ---
 LGUI    A(gui)  R(alt)  S(ctrl) T(shft) D       |  H       N(shft) E(ctrl) I(alt)  O(gui)  ESC
 LSHFT   Z       X       C       V       B       |  K       M       ,       .       ?//     RSHFT
-                        LALT    SPACE(L3) TAB(L1) |  RET(L2) BSPC(L4) RALT
+                        LALT    SPACE   TAB(L1)   |  RET(L2) BSPC(L4) RALT(L3)
 ```
 
 - `:` defaŭlte, `;` kun shift
@@ -54,14 +57,18 @@ LSHFT   Z       X       C       V       B       |  K       M       ,       .    
 
 Noto: `` ` `` e `~` uzas NUBS (ISO-klavaro) por kongrueco kun Polish Programmer layout.
 
-## Strato 3: Media + Bluetooth
+## Strato 3: Diakritiki
+
+Tenar RALT (dextra polexo) + klavo:
 
 ```
----     ---     ---     ---     ---     ---     |  BT_CLR  BT0     BT1     BT2     BT3     BT4
----     PREV    VOL-    VOL+    NEXT    ---     |  CLR_ALL BT_PRV  BT_NXT  ---     ---     ---
----     ---     BRI-    BRI+    MUTE    PLAY    |  ---     DISC0   DISC1   DISC2   ---     ---
+---     ʿ       ʾ       š       ā       ḡ       |  ǧ       ł       ū       ī       è       ---
+---     ą       ṣ       ś       ṭ       ḍ       |  ḥ       ń       ę       ı       ó       ---
+---     ż       ź       ć       ẓ       ·       |  •       ṯ       à       ò       ù       ---
                         ---     ---     ---     |  ---     ---     ---
 ```
+
+Sendas `RALT+klavo`. Requiras EKH (Android) o keylayout (macOS).
 
 ## Strato 4: Funciono-Klavi
 
@@ -73,6 +80,36 @@ Noto: `` ` `` e `~` uzas NUBS (ISO-klavaro) por kongrueco kun Polish Programmer 
 ```
 
 F-klavi komencas de malsupre-maldekstre, iras dekstre, tiam supre.
+
+## Strato 5: Bluetooth
+
+Presar Z+X samtempe por acesar:
+
+```
+---     ---     ---     ---     ---     ---     |  BT_CLR  BT0     BT1     BT2     BT3     BT4
+---     ---     ---     ---     ---     ---     |  ---     ---     ---     ---     ---     ---
+---     ---     ---     ---     ---     ---     |  ---     ---     ---     ---     ---     ---
+                        ---     ---     ---     |  ---     ---     ---
+```
+
+## Strato 6: Morta-Klavi
+
+Combo TBD. Presar morta-klavo, poste litera:
+
+```
+---     ---     ---     ---     ---     ---     |  ---     ---     ---     ---     ---     ---
+---     Makron  Cirk.   Uml.    Karon   ---     |  ---     Breve   Akuto   Cedil.  ---     ---
+---     ---     ---     ---     ---     ---     |  ---     ---     ---     ---     ---     ---
+                        ---     ---     ---     |  ---     ---     ---
+```
+
+- Makron (¯): ā ē ī ō ū
+- Cirkumflekso (^): â ê î ô û
+- Umlaut (¨): ä ë ï ö ü
+- Karon (ˇ): č š ž
+- Breve (˘): ğ ŭ
+- Akuto (´): á é í ó ú
+- Cedilo (¸): ç ş
 
 ## Homerow Modi
 
@@ -100,6 +137,8 @@ Presar du klavi samtempe:
 | I + O | } |
 | G + J | Bootloader |
 | T + N | Caps Word |
+| Z + X | Strato 5 (Bluetooth) |
+| LSHFT + RSHFT | Caps Lock |
 
 ## Caps Word
 
@@ -109,12 +148,12 @@ Caps Word aktivigas per T+N kombo. Olu duros dum tu tajpas literi, e duras kun:
 - Backspace
 - Delete
 
-## Bluetooth (Strato 3)
+## Bluetooth (Strato 5)
 
-- BT_CLR, BT_CLR_ALL - Klarigar konexi
-- BT_SEL 0-4 - Selektar profilo
-- BT_PRV, BT_NXT - Antea/nexta profilo
-- BT_DISC 0-2 - Diskonetar profilo
+Acesar per Z+X kombo:
+
+- BT_CLR - Klarigar aktuala profilo
+- BT_SEL 0-4 - Selektar profilo (5 totala)
 
 ## Instalado
 
