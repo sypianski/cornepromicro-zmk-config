@@ -93,6 +93,11 @@
             key-positions = <24 35>;  // LSHIFT + RSHIFT (outer pinky keys)
             bindings = <&kp CAPS>;
         };
+        combo_layer5 {
+            timeout-ms = <50>;
+            key-positions = <25 26>;  // Z + X (bottom left)
+            bindings = <&mo 5>;
+        };
     };
 
     keymap {
@@ -106,7 +111,7 @@
    &kp LGUI  &kp Q  &kp W  &kp F  &kp P  &kp G      &kp J  &kp L  &kp U      &kp Y    &colon_semi  &none
    &kp LCTRL   &hm LCTRL A  &hm LALT R  &hm LGUI S  &hm LSHFT T  &kp D      &kp H  &hm RSHFT N  &hm RGUI E  &hm RALT I  &hm RCTRL O  &kp ESC
    &mt LSHFT X &kp Z &kp X  &kp C  &kp V  &kp B      &kp K  &kp M  &kp COMMA  &kp DOT  &qmark_slash  &kp RSHFT
-                     &kp LALT  &lt 3 SPACE  &lt 1 TAB  &lt 2 RET  &lt 4 BSPC  &kp RALT
+                     &kp LALT  &kp SPACE  &lt 1 TAB  &lt 2 RET  &lt 4 BSPC  &lt 3 RALT
             >;
         };
 
@@ -133,9 +138,9 @@
             >;
         };
 
-        // Layer 3: Media + Bluetooth
-        media_layer {
-            display-name = "Media";
+        // Layer 3: Diacritics (accessed via right ALT thumb)
+        diacritics_layer {
+            display-name = "Dia";
             bindings = <
    &trans  &kp CAPS    &trans        &trans        &trans      &trans      &bt BT_CLR     &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
    &trans  &kp C_PREV  &kp C_VOL_DN  &kp C_VOL_UP  &kp C_NEXT  &trans      &bt BT_CLR_ALL &bt BT_PRV    &bt BT_NXT    &trans        &trans        &trans
@@ -155,8 +160,16 @@
             >;
         };
 
-        // Rezervita strati por futura uzo (5-9)
-        extra5 { status = "reserved"; };
+        // Layer 5: Bluetooth (accessed via Z+X combo)
+        bt_layer {
+            display-name = "BT";
+            bindings = <
+   &none   &none  &none  &none  &none  &none      &bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
+   &none   &none  &none  &none  &none  &none      &none       &none         &none         &none         &none         &none
+   &none   &none  &none  &none  &none  &none      &kp A       &none         &none         &none         &none         &none
+                         &none  &none  &none      &none       &none         &none
+            >;
+        };
         extra6 { status = "reserved"; };
         extra7 { status = "reserved"; };
         extra8 { status = "reserved"; };
