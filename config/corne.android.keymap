@@ -88,6 +88,11 @@
             key-positions = <1 2>;    // Q + W
             bindings = <&kp DEL>;
         };
+        combo_caps_lock {
+            timeout-ms = <50>;
+            key-positions = <24 35>;  // LSHIFT + RSHIFT (outer pinky keys)
+            bindings = <&kp CAPS>;
+        };
     };
 
     keymap {
@@ -132,7 +137,7 @@
         media_layer {
             display-name = "Media";
             bindings = <
-   &trans  &trans      &trans        &trans        &trans      &trans      &bt BT_CLR     &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
+   &trans  &kp CAPS    &trans        &trans        &trans      &trans      &bt BT_CLR     &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
    &trans  &kp C_PREV  &kp C_VOL_DN  &kp C_VOL_UP  &kp C_NEXT  &trans      &bt BT_CLR_ALL &bt BT_PRV    &bt BT_NXT    &trans        &trans        &trans
    &trans  &trans      &kp C_BRI_DN  &kp C_BRI_UP  &kp C_MUTE  &kp C_PP    &trans         &bt BT_DISC 0 &bt BT_DISC 1 &bt BT_DISC 2 &trans        &trans
                                      &trans        &trans      &trans      &trans         &trans        &trans
