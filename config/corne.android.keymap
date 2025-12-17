@@ -96,7 +96,12 @@
         combo_layer5 {
             timeout-ms = <50>;
             key-positions = <25 26>;  // Z + X (bottom left)
-            bindings = <&mo 5>;
+            bindings = <&sl 5>;       // sticky layer - tap combo, release, tap key
+        };
+        combo_layer6 {
+            timeout-ms = <50>;
+            key-positions = <27 28>;  // C + V (bottom left)
+            bindings = <&sl 6>;       // sticky layer for dead keys
         };
     };
 
