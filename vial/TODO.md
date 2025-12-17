@@ -7,7 +7,7 @@
   - S + T → Ctrl+Shift
   - A + R → Cmd+Alt
   - A + S → Cmd+Ctrl
-- [ ] Set combo for Layer 6 (dead keys) on ZMK
+- [x] Set combo for Layer 6 (dead keys) on ZMK → C+V sticky
 - [ ] Sync Layer 5/6 structure to Vial (if needed)
 
 ---

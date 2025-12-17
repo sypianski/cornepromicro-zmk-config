@@ -23,7 +23,8 @@ Ca esas mea personala keymap por la Corne klavaro, konvertita de Vial a ZMK form
 - **Tenar TAB** → Strato 1 (Nombri)
 - **Tenar ENTER** → Strato 2 (Simboli)
 - **Tenar BACKSPACE** → Strato 4 (Funciono-klavi)
-- **Presar Z+X** → Strato 5 (Bluetooth)
+- **Presar Z+X** → Strato 5 (Bluetooth) - sticky
+- **Presar C+V** → Strato 6 (Morta-klavi) - sticky
 
 ## Baza Strato
 
@@ -137,7 +138,8 @@ Presar du klavi samtempe:
 | I + O | } |
 | G + J | Bootloader |
 | T + N | Caps Word |
-| Z + X | Strato 5 (Bluetooth) |
+| Z + X | Strato 5 (Bluetooth) - sticky |
+| C + V | Strato 6 (Morta-klavi) - sticky |
 | LSHFT + RSHFT | Caps Lock |
 
 ## Caps Word

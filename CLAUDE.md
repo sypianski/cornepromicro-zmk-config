@@ -44,8 +44,8 @@ klavari/
 | 2 | Sym | ENTER hold | Symbols |
 | 3 | Dia | RALT hold | Diacritics (RALT+key) |
 | 4 | Fn | BSPC hold | Function keys F1-F24 |
-| 5 | BT | Z+X combo | Bluetooth controls |
-| 6 | Dead | TBD | Dead keys (macron, circumflex, etc.) |
+| 5 | BT | Z+X sticky | Bluetooth controls |
+| 6 | Dead | C+V sticky | Dead keys (macron, circumflex, etc.) |
 
 **Thumb cluster:**
 ```
@@ -122,7 +122,8 @@ Important combos:
 - `LSHIFT + RSHIFT` (24 + 35): Caps Lock
 - `G + J` (5 + 6): Bootloader mode
 - `Q + W` (1 + 2): Delete
-- `Z + X` (25 + 26): Layer 5 (Bluetooth)
+- `Z + X` (25 + 26): Layer 5 (Bluetooth) - sticky
+- `C + V` (27 + 28): Layer 6 (Dead keys) - sticky
 
 ## Troubleshooting
 
