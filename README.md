@@ -152,10 +152,34 @@ Caps Word aktivigas per T+N kombo. Olu duros dum tu tajpas literi, e duras kun:
 
 ## Bluetooth (Strato 5)
 
-Acesar per Z+X kombo:
+Acesar per Z+X kombo (sticky - presar, liberigar, lore presar klavo):
 
 - BT_CLR - Klarigar aktuala profilo
 - BT_SEL 0-4 - Selektar profilo (5 totala)
+
+## EKH Agordado (Android)
+
+External Keyboard Helper necesas por diakritiki sur Android.
+
+**Polona:**
+```
+RALT+A→ą  RALT+C→ć  RALT+E→ę  RALT+L→ł  RALT+N→ń
+RALT+O→ó  RALT+S→ś  RALT+X→ź  RALT+Z→ż
+```
+
+**Araba ISO 233:**
+```
+RALT+Q→ʿ  RALT+W→ʾ  RALT+D→ḍ  RALT+F→š  RALT+G→ḡ
+RALT+H→ḥ  RALT+J→ǧ  RALT+R→ṣ  RALT+T→ṭ  RALT+V→ẓ
+RALT+M→ṯ  RALT+P→ā  RALT+Y→ī  RALT+U→ū
+```
+
+**Morta-klavi:**
+```
+RALT+6→makron(¯)  RALT+7→cirkumflekso(^)  RALT+8→umlaut(¨)
+RALT+9→karon(ˇ)   RALT+0→breve(˘)         RALT+minus→akuto(´)
+RALT+equal→cedilo(¸)
+```
 
 ## Instalado
 

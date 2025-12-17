@@ -93,6 +93,16 @@
             key-positions = <24 35>;  // LSHIFT + RSHIFT (outer pinky keys)
             bindings = <&kp CAPS>;
         };
+        combo_layer5 {
+            timeout-ms = <50>;
+            key-positions = <25 26>;  // Z + X (bottom left)
+            bindings = <&sl 5>;       // sticky layer - tap combo, release, tap key
+        };
+        combo_layer6 {
+            timeout-ms = <50>;
+            key-positions = <27 28>;  // C + V (bottom left)
+            bindings = <&sl 6>;       // sticky layer for dead keys
+        };
     };
 
     keymap {
@@ -106,7 +116,7 @@
    &kp LGUI  &kp Q  &kp W  &kp F  &kp P  &kp G      &kp J  &kp L  &kp U      &kp Y    &colon_semi  &none
    &kp LCTRL   &hm LCTRL A  &hm LALT R  &hm LGUI S  &hm LSHFT T  &kp D      &kp H  &hm RSHFT N  &hm RGUI E  &hm RALT I  &hm RCTRL O  &kp ESC
    &mt LSHFT X &kp Z &kp X  &kp C  &kp V  &kp B      &kp K  &kp M  &kp COMMA  &kp DOT  &qmark_slash  &kp RSHFT
-                     &kp LALT  &lt 3 SPACE  &lt 1 TAB  &lt 2 RET  &lt 4 BSPC  &kp RALT
+                     &kp LALT  &kp SPACE  &lt 1 TAB  &lt 2 RET  &lt 4 BSPC  &lt 3 RALT
             >;
         };
 
@@ -133,14 +143,15 @@
             >;
         };
 
-        // Layer 3: Media + Bluetooth
-        media_layer {
-            display-name = "Media";
+        // Layer 3: Diacritics (accessed via right ALT thumb)
+        // Sends LALT+key - works with macOS keylayout, Android needs setup
+        diacritics_layer {
+            display-name = "Dia";
             bindings = <
-   &trans  &kp CAPS    &trans        &trans        &trans      &trans      &bt BT_CLR     &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
-   &trans  &kp C_PREV  &kp C_VOL_DN  &kp C_VOL_UP  &kp C_NEXT  &trans      &bt BT_CLR_ALL &bt BT_PRV    &bt BT_NXT    &trans        &trans        &trans
-   &trans  &trans      &kp C_BRI_DN  &kp C_BRI_UP  &kp C_MUTE  &kp C_PP    &trans         &bt BT_DISC 0 &bt BT_DISC 1 &bt BT_DISC 2 &trans        &trans
-                                     &trans        &trans      &trans      &trans         &trans        &trans
+   &trans  &kp RA(Q)  &kp RA(W)  &kp RA(F)  &kp RA(P)  &kp RA(G)      &kp RA(J)  &kp RA(L)  &kp RA(U)      &kp RA(Y)    &kp RA(SEMI)  &trans
+   &trans  &kp RA(A)  &kp RA(R)  &kp RA(S)  &kp RA(T)  &kp RA(D)      &kp RA(H)  &kp RA(N)  &kp RA(E)      &kp RA(I)    &kp RA(O)     &trans
+   &trans  &kp RA(Z)  &kp RA(X)  &kp RA(C)  &kp RA(V)  &kp RA(B)      &kp RA(K)  &kp RA(M)  &kp RA(COMMA)  &kp RA(DOT)  &kp RA(FSLH)  &trans
+                                 &trans     &trans     &trans         &trans     &trans     &trans
             >;
         };
 
@@ -155,9 +166,28 @@
             >;
         };
 
-        // Rezervita strati por futura uzo (5-9)
-        extra5 { status = "reserved"; };
-        extra6 { status = "reserved"; };
+        // Layer 5: Bluetooth (accessed via Z+X combo)
+        bt_layer {
+            display-name = "BT";
+            bindings = <
+   &none   &none  &none  &none  &none  &none      &bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
+   &none   &none  &none  &none  &none  &none      &none       &none         &none         &none         &none         &none
+   &none   &none  &none  &none  &none  &none      &kp A       &none         &none         &none         &none         &none
+                         &none  &none  &none      &none       &none         &none
+            >;
+        };
+        // Layer 6: Dead Keys (combo TBD)
+        // Press dead key, release layer, then type base letter
+        deadkey_layer {
+            display-name = "Dead";
+            bindings = <
+   &none   &none         &none         &none        &none        &none         &none        &none         &none         &none         &none         &none
+   &none   &kp RA(N6)    &kp RA(N7)    &kp RA(N8)   &kp RA(N9)   &none         &none        &kp RA(N0)    &kp RA(MINUS) &kp RA(EQUAL) &none         &none
+   &none   &none         &none         &none        &none        &none         &none        &none         &none         &none         &none         &none
+                                       &none        &none        &none         &none        &none         &none
+            >;
+            // Home row: Macron(6) Circumflex(7) Umlaut(8) Caron(9) | Breve(0) Acute(-) Cedilla(=)
+        };
         extra7 { status = "reserved"; };
         extra8 { status = "reserved"; };
         extra9 { status = "reserved"; };

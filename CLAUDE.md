@@ -52,6 +52,35 @@ klavari/
 LALT | SPACE | TAB/L1 | ENT/L2 | BSPC/L4 | RALT/L3
 ```
 
+## Layer 3: Diacritics Map
+
+Hold RALT (right thumb) + key:
+```
+Q=ʿ   W=ʾ   F=š   P=ā   G=ḡ     J=ǧ   L=ł   U=ū   Y=ī   ;=è
+A=ą   R=ṣ   S=ś   T=ṭ   D=ḍ     H=ḥ   N=ń   E=ę   I=ı   O=ó
+Z=ż   X=ź   C=ć   V=ẓ   B=·     K=•   M=ṯ   ,=à   .=ò   /=ù
+```
+
+**Polish:** ą ć ę ł ń ó ś ź ż
+**Arabic ISO 233:** ʿ ʾ ḍ š ḡ ḥ ǧ ṣ ṭ ẓ ṯ ā ī ū
+**Italian:** à è ò ù
+
+## Layer 6: Dead Keys Map
+
+Press C+V combo, then dead key on home row:
+```
+Left hand (A R S T):
+A = Macron ¯    (ā ē ī ō ū)
+R = Circumflex ^ (â ê î ô û)
+S = Umlaut ¨    (ä ë ï ö ü)
+T = Caron ˇ     (č š ž ř)
+
+Right hand (N E I):
+N = Breve ˘     (ğ ŭ ă)
+E = Acute ´     (á é í ó ú)
+I = Cedilla ¸   (ç ş)
+```
+
 ## Key Relationships
 
 **Diacritics flow (Android):**
@@ -60,12 +89,26 @@ Layer 3 + key → sends RALT(x) → EKH app → outputs ą/ę/ó etc.
 ```
 Requires External Keyboard Helper (EKH) configured with RALT+key mappings.
 
+**Dead keys flow:**
+```
+C+V combo → Layer 6 (sticky) → press dead key (e.g. A for macron) →
+layer deactivates → type base letter (e.g. e) → EKH outputs ē
+```
+
 **Diacritics flow (macOS):**
 ```
 Layer 3 + key → sends RALT(x) → keylayout → outputs ą/ę/ó etc.
 ```
 - Keylayout must have `group="0"` (ANSI, not Unicode)
 - Keylayout must define codes 36, 48, 51, 53, 117 in all keyMaps
+
+## EKH Setup (Android)
+
+Configure these RALT+key mappings in External Keyboard Helper:
+
+**Polish:** RALT+A→ą, RALT+C→ć, RALT+E→ę, RALT+L→ł, RALT+N→ń, RALT+O→ó, RALT+S→ś, RALT+X→ź, RALT+Z→ż
+
+**Dead keys:** RALT+6→macron, RALT+7→circumflex, RALT+8→umlaut, RALT+9→caron, RALT+0→breve, RALT+minus→acute, RALT+equal→cedilla
 
 ## Common Commands
 
