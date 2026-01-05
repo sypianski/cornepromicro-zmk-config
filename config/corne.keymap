@@ -1,9 +1,10 @@
 /*
- * Corne Keymap - Based on Vial v20
+ * Corne Keymap v21
  * Layout: Colemak
  * Target: Android (Ctrl is primary, GUI is secondary)
  * Homerow mods: CAGS (CTRL-ALT-GUI-SHIFT)
  * Tmux prefix: § (NUBS) instead of F13
+ * New: BT_DISC for disconnecting Bluetooth profiles
  */
 
 #include <behaviors.dtsi>
