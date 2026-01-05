@@ -1,7 +1,9 @@
 /*
- * Corne Keymap - Konvertita de Vial
+ * Corne Keymap - Based on Vial v20
  * Layout: Colemak
- * Target: android (Ctrl is primary, GUI is secondary)
+ * Target: Android (Ctrl is primary, GUI is secondary)
+ * Homerow mods: CAGS (CTRL-ALT-GUI-SHIFT)
+ * Tmux prefix: § (NUBS) instead of F13
  */
 
 #include <behaviors.dtsi>
@@ -40,6 +42,38 @@
     combos {
         compatible = "zmk,combos";
 
+        // Utility combos from v20
+        combo_backspace {
+            timeout-ms = <50>;
+            key-positions = <1 2>;    // Q + W
+            bindings = <&kp BSPC>;
+        };
+        combo_enter {
+            timeout-ms = <50>;
+            key-positions = <8 9>;    // U + Y (positions in Colemak)
+            bindings = <&kp RET>;
+        };
+        combo_delete {
+            timeout-ms = <50>;
+            key-positions = <20 14>;  // E + R (home row)
+            bindings = <&kp DEL>;
+        };
+        combo_caps_lock {
+            timeout-ms = <50>;
+            key-positions = <5 6>;    // G + J (F + J in v20, but using inner index)
+            bindings = <&kp CAPS>;
+        };
+        combo_bootloader {
+            timeout-ms = <50>;
+            key-positions = <0 11>;   // Corner keys for safety
+            bindings = <&bootloader>;
+        };
+        combo_caps_word {
+            timeout-ms = <50>;
+            key-positions = <16 19>;  // T + N (index fingers)
+            bindings = <&caps_word>;
+        };
+
         // Brackets - home row adjacent keys
         combo_lbrc {
             timeout-ms = <50>;
@@ -72,36 +106,16 @@
             bindings = <&kp RBRC>;
         };
 
-        // Utility combos
-        combo_bootloader {
-            timeout-ms = <50>;
-            key-positions = <5 6>;    // G + J (inner index keys)
-            bindings = <&bootloader>;
-        };
-        combo_caps_word {
-            timeout-ms = <50>;
-            key-positions = <16 19>;  // T + N (index fingers across split)
-            bindings = <&caps_word>;
-        };
-        combo_delete {
-            timeout-ms = <50>;
-            key-positions = <1 2>;    // Q + W
-            bindings = <&kp DEL>;
-        };
-        combo_caps_lock {
-            timeout-ms = <50>;
-            key-positions = <24 35>;  // LSHIFT + RSHIFT (outer pinky keys)
-            bindings = <&kp CAPS>;
-        };
+        // Layer combos
         combo_layer5 {
             timeout-ms = <50>;
-            key-positions = <25 26>;  // Z + X (bottom left)
-            bindings = <&sl 5>;       // sticky layer - tap combo, release, tap key
+            key-positions = <25 26>;  // Z + X
+            bindings = <&sl 5>;
         };
         combo_layer6 {
             timeout-ms = <50>;
-            key-positions = <27 28>;  // C + V (bottom left)
-            bindings = <&sl 6>;       // sticky layer for dead keys
+            key-positions = <27 28>;  // C + V
+            bindings = <&sl 6>;
         };
     };
 
@@ -109,26 +123,26 @@
         compatible = "zmk,keymap";
 
         // Layer 0: Base (Colemak)
-        // Homerow mods: A=CTRL, R=ALT, S=GUI, T=SHIFT (mirrored on right) - Android style
+        // Homerow mods: A=CTRL, R=ALT, S=GUI, T=SHIFT (mirrored on right) - Android style CAGS
         base_layer {
             display-name = "Base";
             bindings = <
-   &kp LGUI  &kp Q  &kp W  &kp F  &kp P  &kp G      &kp J  &kp L  &kp U      &kp Y    &colon_semi  &none
-   &kp LCTRL   &hm LCTRL A  &hm LALT R  &hm LGUI S  &hm LSHFT T  &kp D      &kp H  &hm RSHFT N  &hm RGUI E  &hm RALT I  &hm RCTRL O  &kp ESC
-   &kp LSHFT  &kp Z  &kp X  &kp C  &kp V  &kp B      &kp K  &kp M  &kp COMMA  &kp DOT  &qmark_slash  &kp RSHFT
+   &kp LCTRL  &kp Q  &kp W  &kp F  &kp P  &kp G      &kp J  &kp L  &kp U      &kp Y    &colon_semi  &none
+   &kp LGUI   &hm LCTRL A  &hm LALT R  &hm LGUI S  &hm LSHFT T  &kp D      &kp H  &hm RSHFT N  &hm RGUI E  &hm RALT I  &hm RCTRL O  &kp ESC
+   &kp NUBS   &kp Z  &kp X  &kp C  &kp V  &kp B      &kp K  &kp M  &kp COMMA  &kp DOT  &qmark_slash  &kp RSHFT
                      &kp LALT  &kp SPACE  &lt 1 TAB  &lt 2 RET  &lt 4 BSPC  &lt 3 RALT
             >;
         };
 
         // Layer 1: Numbers + Navigation
-        // Navigation uses LC for word-jumping (Ctrl on Android/Linux)
+        // Navigation uses LG for word-jumping (Cmd on macOS)
         num_layer {
             display-name = "Num";
             bindings = <
-   &none   &kp PG_UP     &kp HOME   &kp PG_DN  &kp END        &none       &kp LBKT   &kp N7  &kp N8  &kp N9  &kp RBKT   &trans
-   &trans  &kp UP        &kp LEFT   &kp RIGHT  &kp DOWN       &none       &kp LPAR   &kp N4  &kp N5  &kp N6  &kp RPAR   &trans
-   &trans  &kp LC(LEFT)  &kp LC(DOWN) &kp LC(UP) &kp LC(RIGHT) &none      &kp LBRC   &kp N1  &kp N2  &kp N3  &kp RBRC   &trans
-                                    &trans     &trans         &none       &trans     &trans  &kp N0
+   &none   &kp LC(UP)    &kp LC(LEFT) &kp LC(RIGHT) &kp LC(DOWN)  &none       &kp LBKT   &kp N7  &kp N8  &kp N9  &kp RBKT   &trans
+   &trans  &kp UP        &kp LEFT     &kp RIGHT     &kp DOWN      &none       &kp LPAR   &kp N4  &kp N5  &kp N6  &kp RPAR   &trans
+   &trans  &kp LG(LEFT)  &kp LA(LEFT) &kp LA(RIGHT) &kp LG(RIGHT) &none       &kp LBRC   &kp N1  &kp N2  &kp N3  &kp RBRC   &trans
+                                      &trans        &trans        &none       &kp N0     &kp MINUS  &kp N0
             >;
         };
 
@@ -136,65 +150,67 @@
         sym_layer {
             display-name = "Sym";
             bindings = <
-   &trans  &kp EQUAL  &kp PLUS  &kp STAR  &kp AMPS  &kp PIPE     &kp LBRC  &kp LBKT  &kp LPAR  &kp RPAR  &kp RBKT  &kp RBRC
-   &trans  &kp MINUS  &kp EXCL  &kp AT    &kp HASH  &kp SQT      &kp DQT   &kp UNDER &kp COLON &kp SEMI  &kp QMARK &trans
-   &kp BSLH  &kp CARET  &kp BSLH  &kp NUBS &kp LS(NUBS) &kp PRCNT    &kp DLLR  &kp LT    &kp GT    &kp FSLH  &trans    &trans
-                                &trans    &trans    &trans       &trans    &trans    &trans
+   &trans  &kp EQUAL  &kp PLUS   &kp LA(K)  &kp FSLH      &kp LS(SQT)   &none     &kp LS(N7)  &kp LS(N8)  &none      &none      &none
+   &trans  &kp MINUS  &kp EXCL   &kp AT     &kp HASH      &kp SQT       &none     &kp LS(N4)  &kp LS(N5)  &kp LS(N6) &kp LA(B)  &trans
+   &trans  &kp LS(MINUS) &kp LS(NUBS) &kp NUBS &kp BSLH  &kp LS(BSLH)  &none     &none       &none       &none      &none      &trans
+                                 &trans     &trans        &trans        &trans    &trans      &trans
             >;
         };
 
         // Layer 3: Diacritics (accessed via right ALT thumb)
-        // Sends LALT+key - works with macOS keylayout, Android needs setup
+        // Sends LALT+key for macOS keylayout
         diacritics_layer {
             display-name = "Dia";
             bindings = <
-   &trans  &kp RA(Q)  &kp RA(W)  &kp RA(F)  &kp RA(P)  &kp RA(G)      &kp RA(J)  &kp RA(L)  &kp RA(U)      &kp RA(Y)    &kp RA(SEMI)  &trans
-   &trans  &kp RA(A)  &kp RA(R)  &kp RA(S)  &kp RA(T)  &kp RA(D)      &kp RA(H)  &kp RA(N)  &kp RA(E)      &kp RA(I)    &kp RA(O)     &trans
-   &trans  &kp RA(Z)  &kp RA(X)  &kp RA(C)  &kp RA(V)  &kp RA(B)      &kp RA(K)  &kp RA(M)  &kp RA(COMMA)  &kp RA(DOT)  &kp RA(FSLH)  &trans
+   &trans  &kp LA(Q)  &kp LA(W)  &kp LA(F)  &kp LA(P)  &kp LA(G)      &kp LA(J)  &kp LA(L)  &kp LA(U)      &kp LA(Y)    &kp LA(SEMI)  &trans
+   &trans  &kp LA(A)  &kp LA(R)  &kp LA(S)  &kp LA(T)  &kp LA(D)      &kp LA(H)  &kp LA(N)  &kp LA(E)      &kp LA(I)    &kp LA(O)     &trans
+   &trans  &kp LA(Z)  &kp LA(X)  &kp LA(C)  &kp LA(V)  &kp LA(B)      &kp LA(K)  &kp LA(M)  &kp LA(COMMA)  &kp LA(DOT)  &kp LA(FSLH)  &trans
                                  &trans     &trans     &trans         &trans     &trans     &trans
             >;
         };
 
-        // Layer 4: Function Keys (F1-F24, bottom-left to top-right, cols 2-11)
+        // Layer 4: Function Keys + Media
         fn_layer {
             display-name = "Fn";
             bindings = <
-   &trans   &kp F21  &kp F22  &kp F23  &kp F24  &trans       &trans   &trans   &trans   &trans   &trans   &trans
-   &trans   &kp F11  &kp F12  &kp F13  &kp F14  &kp F15      &kp F16  &kp F17  &kp F18  &kp F19  &kp F20  &trans
-   &trans   &kp F1   &kp F2   &kp F3   &kp F4   &kp F5       &kp F6   &kp F7   &kp F8   &kp F9   &kp F10  &trans
-                              &trans   &trans   &trans       &trans   &trans   &trans
+   &kp C_MUTE  &kp C_VOL_DN  &kp C_VOL_UP  &kp C_PP    &kp C_FF    &kp C_RW     &kp C_MUTE  &kp C_VOL_DN  &kp C_VOL_UP  &kp C_PP   &kp C_FF   &trans
+   &trans      &kp F17       &kp KP_ENTER  &kp F20     &kp K_FIND  &kp C_BRI_UP &kp F7      &kp F8        &kp F9        &kp F10    &kp F11    &trans
+   &trans      &kp F13       &kp F14       &kp F15     &kp F16     &kp C_BRI_DN &kp F1      &kp F2        &kp F3        &kp F4     &kp F5     &trans
+                                           &trans      &trans      &trans       &trans      &trans        &kp F6
             >;
         };
 
         // Layer 5: Bluetooth (accessed via Z+X combo)
+        // Top row: Select profile | Middle row: Disconnect profile
         bt_layer {
             display-name = "BT";
             bindings = <
-   &none   &none  &none  &none  &none  &none      &bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
-   &none   &none  &none  &none  &none  &none      &none       &none         &none         &none         &none         &none
-   &none   &none  &none  &none  &none  &none      &kp A       &none         &none         &none         &none         &none
-                         &none  &none  &none      &none       &none         &none
+   &none   &none  &none  &none  &none  &none      &bt BT_CLR    &bt BT_SEL 0   &bt BT_SEL 1   &bt BT_SEL 2   &bt BT_SEL 3   &bt BT_SEL 4
+   &none   &none  &none  &none  &none  &none      &none         &bt BT_DISC 0  &bt BT_DISC 1  &bt BT_DISC 2  &bt BT_DISC 3  &bt BT_DISC 4
+   &none   &none  &none  &none  &none  &none      &none         &none          &none          &none          &none          &none
+                         &none  &none  &none      &none         &none          &none
             >;
         };
-        // Layer 6: Dead Keys (combo TBD)
-        // Press dead key, release layer, then type base letter
+
+        // Layer 6: Dead Keys (C+V combo)
         deadkey_layer {
             display-name = "Dead";
             bindings = <
    &none   &none         &none         &none        &none        &none         &none        &none         &none         &none         &none         &none
-   &none   &kp RA(N6)    &kp RA(N7)    &kp RA(N8)   &kp RA(N9)   &none         &none        &kp RA(N0)    &kp RA(MINUS) &kp RA(EQUAL) &none         &none
+   &none   &kp LA(N6)    &kp LA(N7)    &kp LA(N8)   &kp LA(N9)   &none         &none        &kp LA(N0)    &kp LA(MINUS) &kp LA(EQUAL) &none         &none
    &none   &none         &none         &none        &none        &none         &none        &none         &none         &none         &none         &none
                                        &none        &none        &none         &none        &none         &none
             >;
             // Home row: Macron(6) Circumflex(7) Umlaut(8) Caron(9) | Breve(0) Acute(-) Cedilla(=)
         };
+
         extra7 { status = "reserved"; };
         extra8 { status = "reserved"; };
         extra9 { status = "reserved"; };
     };
 };
 
-// Caps word configuration - continues on underscore, minus, backspace, delete
+// Caps word configuration
 &caps_word {
     continue-list = <UNDERSCORE MINUS BACKSPACE DELETE>;
 };
