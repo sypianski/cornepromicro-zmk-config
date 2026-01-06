@@ -81,15 +81,32 @@ if ! diff -q "$KEYMAP_FILE" "$SCRIPT_DIR/config/corne.keymap" &>/dev/null; then
     log "Build completed successfully!"
 fi
 
-# Get the latest successful workflow run
+# Get the latest successful workflow run with commit info
 log "Finding latest successful workflow run..."
-RUN_ID=$(gh run list --repo "$REPO" --status success --json databaseId --jq '.[0].databaseId')
+RUN_INFO=$(gh run list --repo "$REPO" --status success --limit 1 --json databaseId,headSha,displayTitle)
+RUN_ID=$(echo "$RUN_INFO" | jq -r '.[0].databaseId')
+RUN_SHA=$(echo "$RUN_INFO" | jq -r '.[0].headSha')
+RUN_TITLE=$(echo "$RUN_INFO" | jq -r '.[0].displayTitle')
 
 if [ -z "$RUN_ID" ]; then
     error "No workflow run found"
 fi
 
+# Get local HEAD for comparison
+LOCAL_SHA=$(git rev-parse HEAD)
+
 log "Using workflow run: $RUN_ID"
+log "Build commit: ${RUN_SHA:0:7} - $RUN_TITLE"
+
+# Warn if build doesn't match local HEAD
+if [ "${RUN_SHA:0:7}" != "${LOCAL_SHA:0:7}" ]; then
+    warn "Build commit (${RUN_SHA:0:7}) differs from local HEAD (${LOCAL_SHA:0:7})"
+    warn "The build may be outdated. Wait for new build or check GitHub Actions."
+    read -p "Continue anyway? [y/N]: " confirm
+    if [ "$confirm" != "y" ] && [ "$confirm" != "Y" ]; then
+        error "Aborted"
+    fi
+fi
 
 # Download artifacts
 rm -rf "$TEMP_DIR"
