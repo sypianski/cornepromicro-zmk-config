@@ -24,62 +24,7 @@ if ! gh auth status &>/dev/null; then
     error "Not authenticated. Run: gh auth login"
 fi
 
-# Platform selection menu
-echo ""
-echo -e "${BOLD}Select target platform:${NC}"
-echo -e "  ${BLUE}1)${NC} Android  (Ctrl primary)"
-echo -e "  ${BLUE}2)${NC} macOS    (Cmd primary)"
-echo ""
-read -p "Choice [1/2]: " choice
-
-case "$choice" in
-    1|a|android)
-        PLATFORM="android"
-        KEYMAP_FILE="$SCRIPT_DIR/config/corne.android.keymap"
-        ;;
-    2|m|macos)
-        PLATFORM="macos"
-        KEYMAP_FILE="$SCRIPT_DIR/config/corne.macos.keymap"
-        ;;
-    *)
-        error "Invalid choice"
-        ;;
-esac
-
-log "Selected platform: $PLATFORM"
-
-# Check if keymap needs updating
-if ! diff -q "$KEYMAP_FILE" "$SCRIPT_DIR/config/corne.keymap" &>/dev/null; then
-    log "Updating keymap to $PLATFORM version..."
-    cp "$KEYMAP_FILE" "$SCRIPT_DIR/config/corne.keymap"
-
-    # Commit and push
-    cd "$SCRIPT_DIR"
-    git add config/corne.keymap
-    git commit -m "Switch to $PLATFORM keymap"
-    git push
-
-    log "Pushed to GitHub. Waiting for build..."
-    sleep 5
-
-    # Wait for the new run to start
-    log "Waiting for workflow to complete..."
-    while true; do
-        STATUS=$(gh run list --repo "$REPO" --limit 1 --json status --jq '.[0].status')
-        if [ "$STATUS" = "completed" ]; then
-            break
-        fi
-        printf "\r${YELLOW}[!]${NC} Build status: $STATUS "
-        sleep 10
-    done
-    echo ""
-
-    RESULT=$(gh run list --repo "$REPO" --limit 1 --json conclusion --jq '.[0].conclusion')
-    if [ "$RESULT" != "success" ]; then
-        error "Build failed: $RESULT"
-    fi
-    log "Build completed successfully!"
-fi
+log "Target platform: Android"
 
 # Get the latest successful workflow run with commit info
 log "Finding latest successful workflow run..."
