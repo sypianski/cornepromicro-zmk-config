@@ -1,8 +1,9 @@
 /*
- * Corne Keymap - Converted from Vial v20
+ * Corne Keymap v22
  * Layout: Colemak
- * Homerow mods: CASG (Ctrl-Alt-Shift-GUI)
- * Target: android (Ctrl is primary, GUI is secondary)
+ * Homerow mods: CAGS (Ctrl-Alt-GUI-Shift) - Shift on index fingers (T/N)
+ * Target: Android (Ctrl is primary, GUI is secondary)
+ * Diacritics: RALT+key (Layer 3 via thumb)
  */
 
 #include <behaviors.dtsi>
@@ -110,12 +111,12 @@
         compatible = "zmk,keymap";
 
         // Layer 0: Base (Colemak) - from Vial v20
-        // Homerow mods: CASG = A/CTRL, R/ALT, S/SHIFT, T/GUI (mirrored: N/GUI, E/SHIFT, I/ALT, O/CTRL)
+        // Homerow mods: CAGS = A/CTRL, R/ALT, S/GUI, T/SHIFT (mirrored: N/SHIFT, E/GUI, I/ALT, O/CTRL)
         base_layer {
             display-name = "Base";
             bindings = <
    &none       &kp Q          &kp W         &kp F          &kp P         &kp G       &kp J  &kp L         &kp U          &kp Y         &colon_semi    &none
-   &kp ESC     &hm LCTRL A    &hm LALT R    &hm LSHFT S    &hm LGUI T    &kp D       &kp H  &hm RGUI N    &hm RSHFT E    &hm RALT I    &hm RCTRL O    &kp ESC
+   &kp ESC     &hm LCTRL A    &hm LALT R    &hm LGUI S     &hm LSHFT T   &kp D       &kp H  &hm RSHFT N   &hm RGUI E     &hm RALT I    &hm RCTRL O    &kp ESC
    &kp GRAVE   &kp Z          &kp X         &kp C          &kp V         &kp B       &kp K  &kp M         &kp COMMA      &kp DOT       &qmark_slash   &kp RSHFT
                               &lt 3 LALT    &kp SPACE      &lt 1 TAB     &lt 2 RET  &lt 4 BSPC  &mo 3
             >;
@@ -147,14 +148,14 @@
             >;
         };
 
-        // Layer 3: Diacritics (accessed via left thumb hold)
-        // Sends LALT+key - works with macOS keylayout (Option+letter)
+        // Layer 3: Diacritics (accessed via thumb)
+        // Sends RALT+key - works with Android Polish Programmer layout
         diacritics_layer {
             display-name = "Dia";
             bindings = <
-   &trans  &kp LA(Q)  &kp LA(W)  &kp LA(F)  &kp LA(P)  &kp LA(G)      &kp LA(J)  &kp LA(L)  &kp LA(U)      &kp LA(Y)    &kp LA(SEMI)  &trans
-   &trans  &kp LA(A)  &kp LA(R)  &kp LA(S)  &kp LA(T)  &kp LA(D)      &kp LA(H)  &kp LA(N)  &kp LA(E)      &kp LA(I)    &kp LA(O)     &trans
-   &trans  &kp LA(Z)  &kp LA(X)  &kp LA(C)  &kp LA(V)  &kp LA(B)      &kp LA(K)  &kp LA(M)  &kp LA(COMMA)  &kp LA(DOT)  &kp LA(FSLH)  &trans
+   &trans  &kp RA(Q)  &kp RA(W)  &kp RA(F)  &kp RA(P)  &kp RA(G)      &kp RA(J)  &kp RA(L)  &kp RA(U)      &kp RA(Y)    &kp RA(SEMI)  &trans
+   &trans  &kp RA(A)  &kp RA(R)  &kp RA(S)  &kp RA(T)  &kp RA(D)      &kp RA(H)  &kp RA(N)  &kp RA(E)      &kp RA(I)    &kp RA(O)     &trans
+   &trans  &kp RA(Z)  &kp RA(X)  &kp RA(C)  &kp RA(V)  &kp RA(B)      &kp RA(K)  &kp RA(M)  &kp RA(COMMA)  &kp RA(DOT)  &kp RA(FSLH)  &trans
                                  &trans     &trans     &trans         &trans     &trans     &trans
             >;
         };
