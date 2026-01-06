@@ -117,7 +117,7 @@
    &none       &kp Q          &kp W         &kp F          &kp P         &kp G       &kp J  &kp L         &kp U          &kp Y         &colon_semi    &none
    &kp ESC     &hm LCTRL A    &hm LALT R    &hm LSHFT S    &hm LGUI T    &kp D       &kp H  &hm RGUI N    &hm RSHFT E    &hm RALT I    &hm RCTRL O    &kp ESC
    &kp GRAVE   &kp Z          &kp X         &kp C          &kp V         &kp B       &kp K  &kp M         &kp COMMA      &kp DOT       &qmark_slash   &kp RSHFT
-                              &lt 3 LALT    &kp SPACE      &lt 1 TAB     &lt 2 RET  &lt 4 BSPC  &mo 2
+                              &lt 3 LALT    &kp SPACE      &lt 1 TAB     &lt 2 RET  &lt 4 BSPC  &mo 3
             >;
         };
 
