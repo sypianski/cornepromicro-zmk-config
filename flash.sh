@@ -24,7 +24,10 @@ if ! gh auth status &>/dev/null; then
     error "Not authenticated. Run: gh auth login"
 fi
 
+# Extract version from keymap header
+KEYMAP_VERSION=$(grep -o 'Keymap v[0-9]*' "$SCRIPT_DIR/config/corne.keymap" | head -1 | grep -o 'v[0-9]*')
 log "Target platform: Android"
+log "Local keymap version: ${KEYMAP_VERSION:-unknown}"
 
 # Get the latest successful workflow run with commit info
 log "Finding latest successful workflow run..."
