@@ -29,6 +29,20 @@ KEYMAP_VERSION=$(grep -o 'Keymap v[0-9]*' "$SCRIPT_DIR/config/corne.keymap" | he
 log "Target platform: Android"
 log "Local keymap version: ${KEYMAP_VERSION:-unknown}"
 
+# Mode selection
+echo ""
+echo -e "${BOLD}Select mode:${NC}"
+echo -e "  ${BLUE}1)${NC} Flash firmware (normal)"
+echo -e "  ${BLUE}2)${NC} Settings reset + flash (clears BT pairings)"
+echo ""
+read -p "Choice [1/2]: " mode_choice
+
+RESET_FIRST=false
+if [ "$mode_choice" = "2" ]; then
+    RESET_FIRST=true
+    log "Will flash settings_reset first, then firmware"
+fi
+
 # Get the latest successful workflow run with commit info
 log "Finding latest successful workflow run..."
 RUN_INFO=$(gh run list --repo "$REPO" --status success --limit 1 --json databaseId,headSha,displayTitle)
@@ -88,6 +102,12 @@ fi
 log "Left:  $LEFT_UF2"
 log "Right: $RIGHT_UF2"
 
+# Find settings reset file
+RESET_UF2=$(find . -name "*settings_reset*.uf2" | head -1)
+if [ -n "$RESET_UF2" ]; then
+    log "Reset: $RESET_UF2"
+fi
+
 # Function to wait for bootloader and flash
 flash_half() {
     local uf2_file="$1"
@@ -143,6 +163,30 @@ flash_half() {
     done
     log "$side half flashed successfully!"
 }
+
+# Settings reset if requested
+if [ "$RESET_FIRST" = true ]; then
+    if [ -z "$RESET_UF2" ]; then
+        error "Settings reset file not found in firmware artifacts"
+    fi
+
+    warn "=== SETTINGS RESET ==="
+    warn "This will clear all stored settings including BT pairings"
+    echo ""
+
+    flash_half "$RESET_UF2" "LEFT (reset)"
+
+    echo ""
+    log "Left reset done. Waiting 5 seconds..."
+    sleep 5
+
+    flash_half "$RESET_UF2" "RIGHT (reset)"
+
+    echo ""
+    log "Settings reset complete on both halves!"
+    log "Now flashing firmware..."
+    sleep 3
+fi
 
 # Flash both halves
 flash_half "$LEFT_UF2" "LEFT"
