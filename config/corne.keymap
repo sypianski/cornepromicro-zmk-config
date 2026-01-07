@@ -152,7 +152,7 @@
             bindings = <
    &trans  &kp EQUAL  &kp PLUS   &kp LA(K)  &kp FSLH      &kp LS(SQT)   &none     &kp LS(N7)  &kp LS(N8)  &none      &none      &none
    &trans  &kp MINUS  &kp EXCL   &kp AT     &kp HASH      &kp SQT       &none     &kp LS(N4)  &kp LS(N5)  &kp LS(N6) &kp LA(B)  &trans
-   &trans  &kp LS(MINUS) &kp LS(NUBS) &kp NUBS &kp BSLH  &kp LS(BSLH)  &none     &none       &none       &none      &none      &trans
+   &trans  &kp LS(MINUS) &kp LS(GRAVE) &kp GRAVE &kp BSLH  &kp LS(BSLH)  &none     &none       &none       &none      &none      &trans
                                  &trans     &trans        &trans        &trans    &trans      &trans
             >;
         };
@@ -214,4 +214,3 @@
 &caps_word {
     continue-list = <UNDERSCORE MINUS BACKSPACE DELETE>;
 };
-
