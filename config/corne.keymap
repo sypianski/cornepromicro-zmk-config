@@ -1,9 +1,9 @@
 /*
- * Corne Keymap v24
+ * Corne Keymap v25
  * Layout: Colemak
  * Target: Android (Ctrl is primary, GUI is secondary)
  * Homerow mods: CAGS (CTRL-RALT-GUI-SHIFT) - Shift on T/N, GUI on S/E
- * Changes from v23: Swapped Shift/GUI on homerow (now T/N=Shift, S/E=GUI)
+ * Changes from v24: Removed bracket combos from homerow (A+R, R+S, S+T, N+E, E+I, I+O)
  */
 
 #include <behaviors.dtsi>
@@ -72,38 +72,6 @@
             timeout-ms = <50>;
             key-positions = <16 19>;  // T + N (index fingers)
             bindings = <&caps_word>;
-        };
-
-        // Brackets - home row adjacent keys
-        combo_lbrc {
-            timeout-ms = <50>;
-            key-positions = <13 14>;  // A + R
-            bindings = <&kp LBRC>;
-        };
-        combo_lbkt {
-            timeout-ms = <50>;
-            key-positions = <14 15>;  // R + S
-            bindings = <&kp LBKT>;
-        };
-        combo_lpar {
-            timeout-ms = <50>;
-            key-positions = <15 16>;  // S + T
-            bindings = <&kp LPAR>;
-        };
-        combo_rpar {
-            timeout-ms = <50>;
-            key-positions = <19 20>;  // N + E
-            bindings = <&kp RPAR>;
-        };
-        combo_rbkt {
-            timeout-ms = <50>;
-            key-positions = <20 21>;  // E + I
-            bindings = <&kp RBKT>;
-        };
-        combo_rbrc {
-            timeout-ms = <50>;
-            key-positions = <21 22>;  // I + O
-            bindings = <&kp RBRC>;
         };
 
         // Layer combos
