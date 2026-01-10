@@ -11,11 +11,14 @@ This is a **keyboard configuration repository** for two Corne split keyboards:
 | **Corne 42** | 42 | ZMK | Bluetooth | `config/corne.keymap` |
 | **Corne 46** | 46 | Vial/QMK | USB | `vial/*.vil` |
 
-Both keyboards use **Colemak** layout with **homerow mods**.
+Both keyboards use **Colemak** layout with **homerow mods**:
+```
+A=Ctrl  R=Alt  S=GUI  T=Shift  |  N=Shift  E=GUI  I=Alt  O=Ctrl
+```
 
 **Platform variants:**
-- `corne.android.keymap` - Android (CAGS: Ctrl primary, GUI secondary)
-- `corne.macos.keymap` - macOS (GACS: GUI primary, Ctrl secondary)
+- `corne.android.keymap` - Android (CAGS: Ctrl-Alt-GUI-Shift on homerow)
+- `corne.macos.keymap` - macOS (GACS: GUI-Alt-Ctrl-Shift on homerow)
 
 ## Architecture
 
@@ -43,13 +46,13 @@ klavari/
 | 1 | Num | TAB hold | Numbers + navigation |
 | 2 | Sym | ENTER hold | Symbols |
 | 3 | Dia | RALT hold | Diacritics (RALT+key) |
-| 4 | Fn | BSPC hold | Function keys F1-F24 |
-| 5 | BT | Z+X sticky | Bluetooth controls |
+| 4 | Fn | (reserved) | Function keys F1-F24 |
+| 5 | BT | Z+X sticky / BSPC hold | Bluetooth + Media controls |
 | 6 | Dead | C+V sticky | Dead keys (macron, circumflex, etc.) |
 
 **Thumb cluster:**
 ```
-LALT | SPACE | TAB/L1 | ENT/L2 | BSPC/L4 | RALT/L3
+RALT | SPACE | TAB/L1 | ENT/L2 | BSPC/L5 | RALT
 ```
 
 ## Layer 3: Diacritics Map
@@ -162,11 +165,13 @@ Thumb:       36 37 38     | 39 40 41
 
 Important combos:
 - `T + N` (16 + 19): Caps Word
-- `LSHIFT + RSHIFT` (24 + 35): Caps Lock
-- `G + J` (5 + 6): Bootloader mode
-- `Q + W` (1 + 2): Delete
+- `G + J` (5 + 6): Caps Lock
+- `Q + W` (1 + 2): Backspace
+- `U + Y` (8 + 9): Enter
+- `E + R` (20 + 14): Delete
 - `Z + X` (25 + 26): Layer 5 (Bluetooth) - sticky
 - `C + V` (27 + 28): Layer 6 (Dead keys) - sticky
+- Corner keys (0 + 11): Bootloader mode
 
 ## Troubleshooting
 
