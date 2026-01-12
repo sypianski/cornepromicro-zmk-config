@@ -1,9 +1,10 @@
 /*
- * Corne Keymap v25
+ * Corne Keymap v26
  * Layout: Colemak
  * Target: Android (Ctrl is primary, GUI is secondary)
- * Homerow mods: CAGS (CTRL-RALT-GUI-SHIFT) - Shift on T/N, GUI on S/E
- * Changes from v24: Removed bracket combos from homerow (A+R, R+S, S+T, N+E, E+I, I+O)
+ * Homerow mods: A=Ctrl, T=GUI | N=GUI, O=Ctrl
+ * Top row mods: W=Alt, F=Shift | U=Shift, Y=Alt
+ * Changes from v25: Moved Alt/Shift from homerow to top row
  */
 
 #include <behaviors.dtsi>
@@ -42,20 +43,9 @@
     combos {
         compatible = "zmk,combos";
 
-        // Utility combos from v20
-        combo_backspace {
-            timeout-ms = <50>;
-            key-positions = <1 2>;    // Q + W
-            bindings = <&kp BSPC>;
-        };
-        combo_enter {
-            timeout-ms = <50>;
-            key-positions = <8 9>;    // U + Y (positions in Colemak)
-            bindings = <&kp RET>;
-        };
         combo_delete {
             timeout-ms = <50>;
-            key-positions = <20 14>;  // E + R (home row)
+            key-positions = <20 14>;  // E + R (cross-hand)
             bindings = <&kp DEL>;
         };
         combo_caps_lock {
@@ -65,7 +55,7 @@
         };
         combo_bootloader {
             timeout-ms = <50>;
-            key-positions = <0 11>;   // Corner keys for safety
+            key-positions = <0 11>;   // Corner keys
             bindings = <&bootloader>;
         };
         combo_caps_word {
@@ -73,30 +63,19 @@
             key-positions = <16 19>;  // T + N (index fingers)
             bindings = <&caps_word>;
         };
-
-        // Layer combos
-        combo_layer5 {
-            timeout-ms = <50>;
-            key-positions = <25 26>;  // Z + X
-            bindings = <&sl 5>;
-        };
-        combo_layer6 {
-            timeout-ms = <50>;
-            key-positions = <27 28>;  // C + V
-            bindings = <&sl 6>;
-        };
     };
 
     keymap {
         compatible = "zmk,keymap";
 
         // Layer 0: Base (Colemak)
-        // Homerow mods: CASG = A=CTRL, R=RALT, S=SHIFT, T=GUI (mirrored on right)
+        // Homerow mods: A=Ctrl, T=GUI | N=GUI, O=Ctrl
+        // Top row mods: W=Alt, F=Shift | U=Shift, Y=Alt
         base_layer {
             display-name = "Base";
             bindings = <
-   &none      &kp Q  &kp W  &kp F  &kp P  &kp G      &kp J  &kp L  &kp U      &kp Y    &colon_semi  &none
-   &kp ESC    &hm LCTRL A  &hm RALT R  &hm LGUI S  &hm LSHFT T  &kp D      &kp H  &hm RSHFT N  &hm RGUI E  &hm RALT I  &hm RCTRL O  &kp GRAVE
+   &none      &kp Q  &hm RALT W  &hm LSHFT F  &kp P  &kp G      &kp J  &kp L  &hm RSHFT U  &hm RALT Y  &colon_semi  &none
+   &kp ESC    &hm LCTRL A  &kp R  &kp S  &hm LGUI T  &kp D      &kp H  &hm RGUI N  &kp E  &kp I  &hm RCTRL O  &kp GRAVE
    &kp LSHFT  &kp Z  &kp X  &kp C  &kp V  &kp B      &kp K  &kp M  &kp COMMA  &kp DOT  &qmark_slash  &kp RSHFT
                      &kp RALT  &kp SPACE  &lt 1 TAB  &lt 2 RET  &lt 5 BSPC  &kp RALT
             >;
