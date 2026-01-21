@@ -74,7 +74,7 @@
         base_layer {
             display-name = "Base";
             bindings = <
-   &kp LC(W)  &kp Q  &hm RALT W  &hm LSHFT F  &kp P  &kp G      &kp J  &kp L  &hm RSHFT U  &hm RALT Y  &colon_semi  &none
+   &none      &kp Q  &hm RALT W  &hm LSHFT F  &kp P  &kp G      &kp J  &kp L  &hm RSHFT U  &hm RALT Y  &colon_semi  &none
    &kp ESC    &hm LCTRL A  &kp R  &kp S  &hm LGUI T  &kp D      &kp H  &hm RGUI N  &kp E  &kp I  &hm RCTRL O  &kp GRAVE
    &kp LSHFT  &kp Z  &kp X  &kp C  &kp V  &kp B      &kp K  &kp M  &kp COMMA  &kp DOT  &qmark_slash  &kp RSHFT
                      &kp RALT  &kp SPACE  &lt 1 TAB  &lt 2 RET  &lt 5 BSPC  &kp RALT
@@ -86,7 +86,7 @@
         num_layer {
             display-name = "Num";
             bindings = <
-   &none        &none       &none        &none         &none         &none       &kp LBKT   &kp N7  &kp N8  &kp N9  &kp RBKT   &trans
+   &kp LC(W)    &none       &none        &none         &none         &none       &kp LBKT   &kp N7  &kp N8  &kp N9  &kp RBKT   &trans
    &kp LC(BSPC) &kp UP      &kp LEFT     &kp RIGHT     &kp DOWN      &kp LC(DEL) &kp LPAR   &kp N4  &kp N5  &kp N6  &kp RPAR   &trans
    &kp BSPC     &kp HOME    &kp LC(LEFT) &kp LC(RIGHT) &kp END       &kp DEL     &kp LBRC   &kp N1  &kp N2  &kp N3  &kp RBRC   &trans
                                       &trans        &trans        &none       &kp N0     &kp MINUS  &kp N0
@@ -133,7 +133,7 @@
             display-name = "BT";
             bindings = <
    &kp K_MUTE  &kp K_VOL_DN  &kp K_VOL_UP  &kp K_PP  &kp K_NEXT  &kp K_PREV   &bt BT_SEL 0  &bt BT_SEL 1   &bt BT_SEL 2   &bt BT_SEL 3   &bt BT_SEL 4   &bt BT_SEL 5
-   &none       &none         &none         &none     &none       &none        &bt BT_DISC 0 &bt BT_DISC 1  &bt BT_DISC 2  &bt BT_DISC 3  &bt BT_DISC 4  &bt BT_DISC 5
+   &none       &none         &none         &none     &none       &none        &bt BT_CLR    &bt BT_CLR     &bt BT_CLR     &bt BT_CLR     &bt BT_CLR     &bt BT_CLR
    &none       &none         &none         &none     &none       &none        &none         &none          &none          &none          &none          &bt BT_CLR
                          &none  &none  &none      &none         &none          &none
             >;
